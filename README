@@ -1,0 +1,21 @@
+My Game Library
+
+
+A short description (use -h or --help to see usage):
+
+* add-game.pl: add a game to the database
+* del-game.pl: delete a game from the database
+* gen-desktop.pl: generate a .desktop-file for menu
+* import-desura.pl: import all the games from your Desura installation
+* lookup-game.pl: search for a game with regexps in the database
+* mgl.pl: core program (interactive)
+* mgl-x.pl: wrapper that starts mgl.pl in a separate X server
+* sort-db.pl: sort games alphabetically in the database
+
+
+Notes:
+
+* gen-desktop.pl will generate .desktop-file that starts mgl-x.pl
+* mgl-x.pl starts Urxvt terminal as X client. It is hardcoded at the moment, sorry.
+* mgl-x.pl starts "nvidia-settings -l" after X server starts. It is hardcoded too, but you can disable it by commenting out appropriate line.
+
