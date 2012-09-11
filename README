@@ -5,6 +5,7 @@ A short description (use -h or --help to see usage):
 
 * add-game.pl: add a game to the database
 * del-game.pl: delete a game from the database
+* edit-game.pl: edit a game in the database
 * gen-desktop.pl: generate a .desktop-file for menu
 * import-desura.pl: import all the games from your Desura installation
 * lookup-game.pl: search for a game with regexps in the database
