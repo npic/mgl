@@ -34,7 +34,7 @@ eval
         die "You can edit either 'name' or 'exe'";
     }
 
-    if ($index !~ /^[1-9]\d*$/ or not defined $db[$index-1])
+    if (not DBTools::checkIndex(\@db, $index))
     {
         die "Bad index";
     }
