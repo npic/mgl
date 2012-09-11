@@ -43,12 +43,22 @@ sub printDB
     return;
 }
 
+sub checkIndex
+{
+    my ($dbref, $index, $upperBoundPlus1) = @_;
+
+    my $upperBound = scalar @{$dbref};
+    $upperBound++ if $upperBoundPlus1;
+
+    return ($index =~ /^[1-9]\d*$/ and $index <= $upperBound);
+}
+
 sub addGame
 {
     my ($dbref, $game, $exe, $index) = @_;
     $index = @{$dbref}+1 if not defined $index;
 
-    if ($index =~ /^[1-9]\d*$/ and $index <= @{$dbref}+1)
+    if (checkIndex($dbref, $index, 1))
     {
         splice(@{$dbref}, $index-1, 0, ({'game' => $game, 'exe' => $exe}));
     }
@@ -62,7 +72,7 @@ sub addGame
 sub delGame
 {
     my ($dbref, $index) = @_;
-    if ($index =~ /^[1-9]\d*$/ and $index <= @{$dbref})
+    if (checkIndex($dbref, $index))
     {
         splice(@{$dbref}, $index-1, 1);
     }

@@ -33,7 +33,7 @@ while(<STDIN>)
     elsif(/^$/)
     {
     }
-    elsif(/^[1-9]\d*$/ and defined $db[$_-1])
+    elsif(DBTools::checkIndex(\@db, $_))
     {
         system($db[$_-1]{'exe'});
     }
