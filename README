@@ -17,6 +17,6 @@ A short description (use -h or --help to see usage):
 Notes:
 
 * gen-desktop.pl will generate .desktop-file that starts mgl-x.pl
-* mgl-x.pl starts Urxvt terminal as X client. It is hardcoded at the moment, sorry.
-* mgl-x.pl starts "nvidia-settings -l" after X server starts. It is hardcoded too, but you can disable it by commenting out appropriate line.
+* mgl-x.pl starts /usr/bin/jwm as X client by default. You can overwrite this behaviour by specifying your own X client command as an argument for mgl-x.pl.
+* mgl-x.pl starts "nvidia-settings -l" after X server starts. It is hardcoded, but you can disable it by commenting out appropriate line.
 
