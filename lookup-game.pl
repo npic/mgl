@@ -22,7 +22,14 @@ my $i = 1;
 foreach my $record (@db)
 {
     my $game = $record->{'game'};
-    print "$i ($game)\n" if $game =~ /$gameRE/i;
+    my $exe = $record->{'exe'};
+    if ($game =~ /$gameRE/i)
+    {
+        print "$game\n";
+        print "  DB index: $i\n";
+        print "  Command: $exe\n";
+        print "\n";
+    }
     $i ++;
 }
 exit 0;
