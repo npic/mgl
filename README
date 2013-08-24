@@ -18,5 +18,4 @@ Notes:
 
 * gen-desktop.pl will generate .desktop-file that starts mgl-x.pl
 * mgl-x.pl starts /usr/bin/jwm as X client by default. You can overwrite this behaviour by specifying your own X client command as an argument for mgl-x.pl.
-* mgl-x.pl starts "nvidia-settings -l" after X server starts. It is hardcoded, but you can disable it by commenting out appropriate line.
 
