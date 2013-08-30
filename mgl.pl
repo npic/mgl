@@ -38,7 +38,8 @@ printPS2();
 while(<STDIN>)
 {
     chomp;
-    s/\s//g;
+    s/^\s+//;
+    s/\s+$//;
     if(/^(exit|quit|x|q)$/)
     {
         last;
