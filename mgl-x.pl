@@ -29,7 +29,7 @@ while (-e "/tmp/.X11-unix/X${display}")
 }
 
 my $wm = shift @ARGV;
-if (not defined $wm)
+if (not defined $wm or $wm =~ /\s*/)
 {
     $wm = "/usr/bin/jwm";
 }

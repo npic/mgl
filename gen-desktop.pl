@@ -22,11 +22,22 @@ use warnings;
 use FindBin;
 
 my $usage = "Usage: gen-desktop.pl [X CLIENT]\n";
-my $wm = shift @ARGV || "";
-if ($wm =~ /^(-h|--help)$/)
+my $wm = shift @ARGV;
+if (defined $wm)
 {
-    print $usage;
-    exit 0;
+    if ($wm =~ /^(-h|--help)$/)
+    {
+        print $usage;
+        exit 0;
+    }
+    else
+    {
+        $wm = "\"${wm}\"";
+    }
+}
+else
+{
+    $wm = "";
 }
 open(DESKTOP, '>', "$FindBin::Bin/MGL.desktop") or die $!;
 print DESKTOP <<EOF;
@@ -35,7 +46,7 @@ print DESKTOP <<EOF;
 [Desktop Entry]
 Name=My Game Library
 Type=Application
-Exec=$FindBin::Bin/mgl-x.pl "$wm"
+Exec=$FindBin::Bin/mgl-x.pl $wm
 Path=$FindBin::Bin/
 Icon=$FindBin::Bin/icon.png
 Terminal=false
