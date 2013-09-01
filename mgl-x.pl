@@ -20,6 +20,8 @@
 use strict;
 use warnings;
 
+my $usage = "Usage: mgl-x.pl [X CLIENT]\n";
+
 my $display = 1;
 while (-e "/tmp/.X11-unix/X${display}")
 {
@@ -31,7 +33,12 @@ if (not defined $wm)
 {
     $wm = "/usr/bin/jwm";
 }
-system("/usr/bin/startx ${wm} -- \":${display}\" &");
+if ($wm =~ /^(-h|--help)$/)
+{
+    print $usage;
+    exit 0;
+}
+system("/usr/bin/startx \"${wm}\" -- \":${display}\" &");
 
 # The following thing should be configured within a WM
 # If you don't use a WM, you may wish to uncomment this block of code

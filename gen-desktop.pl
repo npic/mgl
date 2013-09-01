@@ -35,7 +35,7 @@ print DESKTOP <<EOF;
 [Desktop Entry]
 Name=My Game Library
 Type=Application
-Exec=$FindBin::Bin/mgl-x.pl $wm
+Exec=$FindBin::Bin/mgl-x.pl "$wm"
 Path=$FindBin::Bin/
 Icon=$FindBin::Bin/icon.png
 Terminal=false
