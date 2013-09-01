@@ -22,6 +22,11 @@ sub loadDB
     my $path = shift;
     my @db;
 
+    if (not -e $path)
+    {
+        my @emptydb = ();
+        saveDB(\@emptydb, $path);
+    }
     open(DB, '<', $path) or die $!;
     while(<DB>)
     {
