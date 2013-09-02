@@ -23,21 +23,14 @@ use FindBin;
 
 my $usage = "Usage: gen-desktop.pl [X CLIENT]\n";
 my $wm = shift @ARGV;
-if (defined $wm)
-{
-    if ($wm =~ /^(-h|--help)$/)
-    {
-        print $usage;
-        exit 0;
-    }
-    else
-    {
-        $wm = "\"${wm}\"";
-    }
-}
-else
+if (not defined $wm)
 {
     $wm = "";
+}
+if ($wm =~ /^(-h|--help)$/)
+{
+    print $usage;
+    exit 0;
 }
 open(DESKTOP, '>', "$FindBin::Bin/MGL.desktop") or die $!;
 print DESKTOP <<EOF;

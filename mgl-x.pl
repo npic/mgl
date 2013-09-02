@@ -19,6 +19,7 @@
 
 use strict;
 use warnings;
+use FindBin;
 
 my $usage = "Usage: mgl-x.pl [X CLIENT]\n";
 
@@ -29,18 +30,18 @@ while (-e "/tmp/.X11-unix/X${display}")
 }
 
 my $wm = shift @ARGV;
-if (not defined $wm or $wm =~ /^\s*$/)
+if (not defined $wm)
 {
-    $wm = "/usr/bin/jwm";
+    $wm = "/usr/bin/urxvt +hold -sr -e \"$FindBin::Bin/mgl.pl\"";
 }
 if ($wm =~ /^(-h|--help)$/)
 {
     print $usage;
     exit 0;
 }
-system("/usr/bin/startx \"${wm}\" -- \":${display}\" &");
+system("/usr/bin/xinit ${wm} -- \":${display}\" &");
 
-# The following thing should be configured within a WM
+# The autostart functionality should be configured within a WM
 # If you don't use a WM, you may wish to uncomment this block of code
 
 #while (not -e "/tmp/.X11-unix/X${display}")
@@ -48,5 +49,6 @@ system("/usr/bin/startx \"${wm}\" -- \":${display}\" &");
 #    sleep 1;
 #}
 #
+## Now start a few programs, e.g.:
 #system("DISPLAY=\":${display}\" /usr/bin/nvidia-settings -l");
 

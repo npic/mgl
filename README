@@ -17,5 +17,5 @@ A short description (use -h or --help to see usage):
 Notes:
 
 * gen-desktop.pl will generate .desktop-file that starts mgl-x.pl
-* mgl-x.pl starts /usr/bin/jwm as X client by default. You can overwrite this behaviour by specifying your own X client command as an argument for mgl-x.pl.
+* mgl-x.pl starts /usr/bin/urxvt that execs mgl.pl as an X client by default. You can overwrite this behaviour by specifying your own X client command as an argument for mgl-x.pl.
 
