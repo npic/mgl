@@ -13,9 +13,7 @@
     <action name="Execute"><execute>/usr/bin/urxvt +hold -sr -fg gray50 -bg black</execute></action>
   </item>
   <item label="Exit">
-    <action name="Exit">
-        <prompt>no</prompt>
-    </action>
+    <action name="Execute"><execute>/usr/bin/openbox --exit</execute></action>
   </item>
 </menu>
 
