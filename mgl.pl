@@ -31,8 +31,9 @@ sub printPS2
 
 my $db_path = "$FindBin::Bin/mgl.db";
 my @db = DBTools::loadDB($db_path);
+my @selection = @db;
 
-DBTools::printDB(\@db);
+DBTools::printDB(\@selection);
 printPS2();
 
 while(<STDIN>)
@@ -47,42 +48,46 @@ while(<STDIN>)
     elsif(/^(reload|r)$/)
     {
         @db = DBTools::loadDB($db_path);
+        @selection = @db;
+    }
+    elsif(/^(unselect|undo|u)$/)
+    {
+        @selection = @db;
     }
     elsif(/^$/)
     {
     }
-    elsif(DBTools::checkIndex(\@db, $_))
+    elsif(DBTools::checkIndex(\@selection, $_))
     {
-        system($db[$_-1]{'exe'});
+        system($selection[$_-1]{'exe'});
     }
     else
     {
-        my $matched_count = 0;
-        my $matched_game;
-        foreach my $record (@db)
+        my @new_selection;
+        my $new_selection_length = 0;
+        foreach my $record (@selection)
         {
             if ($record->{'game'} =~ /$_/i)
             {
-                $matched_count ++;
-                $matched_game = $record->{'exe'};
-                last if $matched_count > 1;
+                push(@new_selection, $record);
+                $new_selection_length ++;
             }
         }
-        if ($matched_count == 0)
+        if ($new_selection_length == 0)
         {
             print "Nothing matched\n";
         }
-        elsif ($matched_count == 1)
+        elsif ($new_selection_length == 1)
         {
-            system($matched_game);
+            system($new_selection[0]{'exe'});
         }
         else
         {
-            print "Ambiguous input\n";
+            @selection = @new_selection;
         }
     }
 
-    DBTools::printDB(\@db);
+    DBTools::printDB(\@selection);
     printPS2();
 }
 
