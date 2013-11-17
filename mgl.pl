@@ -91,7 +91,8 @@ while(<STDIN>)
         my $new_selection_length = 0;
         foreach my $record (@selection)
         {
-            if ($record->{'game'} =~ /$_/i)
+            my $regex_check = eval { $record->{'game'} =~ /$_/i };
+            if ($regex_check)
             {
                 push(@new_selection, $record);
                 $new_selection_length ++;
