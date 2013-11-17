@@ -23,6 +23,26 @@ use FindBin;
 use lib "$FindBin::Bin";
 use DBTools;
 
+sub help
+{
+    print "My Game Library Command List:\n";
+    print "\n";
+    print "Any natural number ... run the game with the specified index\n";
+    print "Empty string ......... do nothing\n";
+    print "reload or r .......... reload the database\n";
+    print "unselect, undo or u .. reset the selection\n";
+    print "help, h or ? ......... print this help\n";
+    print "exit, quit, x or q ... quit My Game Library\n";
+    print "Anything else ........ try to match titles to the specified regex\n";
+    print "\n";
+    print "Note that My Game Library strips all spaces at the beginning\n";
+    print "and at the end of the input string\n";
+    print "\n";
+    print "Press Enter to continue...\n";
+    <STDIN>;
+    return;
+}
+
 sub printPS2
 {
     print (exists $ENV{'PS2'} ? $ENV{'PS2'} : '> ');
@@ -44,6 +64,10 @@ while(<STDIN>)
     if(/^(exit|quit|x|q)$/)
     {
         last;
+    }
+    if(/^(help|h|\?)$/)
+    {
+        help();
     }
     elsif(/^(reload|r)$/)
     {
